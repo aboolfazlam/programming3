@@ -9,8 +9,7 @@ import IndexUser from './components/user/IndexUser.vue'
 import IndexPost from './components/post/IndexPost.vue'
 import ShowUser from './components/user/ShowUser.vue'
 import GeneralTemplate from './components/popular/generalTemplate.vue'
-import CreatUser from './components/user/CreatUser.vue'
-import Creatpost from './components/post/Creatpost.vue'
+import CreateUser from './components/user/CreateUser.vue'
 const routes = [
     { path: '/', component: HomePage, name:"Home" },
     {
@@ -27,10 +26,10 @@ const routes = [
           component:ShowUser,
           name:'showUser'
         },
-          {
-          path:'/creat',
-          component:CreatUser,
-          name:'creatuser'
+        {
+          path:'create',
+          component:CreateUser,
+          name:'createUser'
         },
       ]
     },

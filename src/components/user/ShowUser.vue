@@ -1,9 +1,8 @@
-
 <script setup>
-import { onMounted,ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
-let user=ref([])
+let user = ref(null)
 const route = useRoute();
 function get_user(id) {
   axios
@@ -24,13 +23,14 @@ function get_user(id) {
 onMounted(() => {
   get_user(route.params.id);
 });
-watch(()=>route.params.id,(new_id)=>{
+watch(() => route.params.id, (new_id) => {
   get_user(new_id)
 })
 </script>
 <template>
   <div class="container">
-    <div class="row">
+    <div class="row" v-if="user!=null">
+
       <div class="col-sm-6 mb-3 mb-sm-0">
         <div class="card">
           <div class="card-body">
@@ -38,9 +38,16 @@ watch(()=>route.params.id,(new_id)=>{
             <p class="card-text">{{ user.username }}</p>
             <p class="card-text">{{ user.phone }}</p>
             <p class="card-text">{{ user.email }}</p>
-            <router-link :to="{name:'indexUser'}" class="btn btn-primary">Back</router-link>
+            <router-link :to="{ name: 'indexUser' }" class="btn btn-primary">Back</router-link>
           </div>
         </div>
+      </div>
+
+
+    </div>
+    <div v-else>
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
     </div>
   </div>

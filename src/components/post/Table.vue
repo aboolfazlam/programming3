@@ -2,32 +2,33 @@
 import { defineProps } from 'vue';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 const props = defineProps({
-   users:Object
+   posts:Object
 })
 </script>
 <template>
-  <table class="table table-striped mt-4">
+  <div class="container">
+    <table class="table table-striped mt-4">
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Username</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Email</th>
-        <th scope="col">Action</th>
+        <th scope="col">User Id</th>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Body</th>
+        <th style="width:150px;" scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(user,index) in users" :key="user.id">
+      <tr v-for="(post,index) in posts" :key="post.id">
         <td scope="row">{{index + 1}}</td>
-        <td v-text="user.name"></td>
-        <td v-text="user.username"></td>
-        <td v-text="user.phone"></td>
-        <td v-text="user.email"></td>
+        <td v-text="post.userId"></td>
+        <td v-text="post.id"></td>
+        <td v-text="post.title"></td>
+        <td v-text="post.body"></td>
         <td>
-            <router-link :to="{name:'showUser',params:{id:user.id}}" class="p-2">
-              <i class="bi bi-eye-fill"></i>
-            </router-link>
+            <a href="#" class="p-2">
+                <i class="bi bi-eye-fill"></i>
+            </a>
             <a href="#" class="text-success p-2">
                 <i class="bi bi-pencil-fill"></i>
             </a>
@@ -39,6 +40,7 @@ const props = defineProps({
       
     </tbody>
   </table>
+  </div>
 </template>
 <style scoped>
 thead th{
